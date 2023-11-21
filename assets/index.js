@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function fetchURL(url) {
     try {
-      const data = await fetch(url);
+      const proxyUrl = "https://api.allorigins.win/raw?url="; // Use the 'allorigins' proxy
+      const data = await fetch(proxyUrl + encodeURIComponent(url), {
+        mode: "cors",
+      });
       const blob = await data.blob();
       const fileUrl = URL.createObjectURL(blob);
       const aTag = document.createElement("a");
